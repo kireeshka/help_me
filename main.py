@@ -5,14 +5,15 @@ from helper import res
 
 p.init()
 clock = p.time.Clock()
+runing = True
+"""цикл работы игры"""
+
 dp = p.display.set_mode((wi, hi))
 p.display.set_caption(game_name)
 p.display.set_icon(p.image.load(res/'spite'/'image.png')) #добавляем иконку для игры
 pl = Player(res/'spite'/'player.png', (100, 100)) # добавляем спрайт персонажа
 all_sprites = p.sprite.Group() # группа для спрайтов
 all_sprites.add(pl)
-runing = True
-"""цикл работы игры"""
 while runing:
     for event in p.event.get():
         if event.type == p.QUIT:
