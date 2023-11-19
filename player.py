@@ -7,7 +7,8 @@ import speech
 
 
 class Player(p.sprite.Sprite):
-    speed = 5
+    speed = 0.4
+
 
     def __init__(self, sprite_sheet_paf, position):
         """инит ключевых переменных"""
@@ -22,7 +23,7 @@ class Player(p.sprite.Sprite):
         self.rect = self.image.get_rect(center=position)
         self.rectkoll = p.Rect([self.rect.x,self.rect.y ],[self.rect.w // 4 ,self.rect.h // 3])
 
-    def _move(self,taili,npc):
+    def _move(self,taili,npc,tick):
         """движение персонажа по x,y"""
         self.velocity = Vector2(0, 0)
         keys = p.key.get_pressed()
@@ -37,7 +38,7 @@ class Player(p.sprite.Sprite):
         # делаем чтобы можно было двигаться в одном направлении
         if self.velocity.length() > 1:
             self.velocity.x = 0
-        self.velocity *= Player.speed
+        self.velocity *= Player.speed * tick
         self.rectkoll.center = self.rect.center + self.velocity * 1.5
         if self.stlok(taili) == True or self.stnpc(npc) == True:
             self.velocity.x = 0
@@ -46,7 +47,7 @@ class Player(p.sprite.Sprite):
 
 
 
-    def update(self,plitki,npc):
+    def update(self,plitki,npc,tick):
         """обновление местоположения персонажа """
         if self.velocity.x >= 1:
             self.image = self.wolkright[self.u]
@@ -66,7 +67,7 @@ class Player(p.sprite.Sprite):
             self.u += 1
         if self.u == 4:
             self.u = 0
-        self._move(plitki,npc)
+        self._move(plitki,npc,tick)
 
 
     def _loadiamg(self, sheet):  # загружаем картинку персонажа

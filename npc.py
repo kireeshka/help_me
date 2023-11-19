@@ -10,17 +10,18 @@ class NPC():
         self.speedx = 1
         self.speedy = 0
         self.t = 1
-        self.speach = speech.Speech('Привет', [set.wi // 2, set.hi - 100])
+        self.speach = speech.Speech('Привет. меня зовут Машаайуаfefefef', [set.wi // 2, set.hi - 100])
         self.pos = pos
         self.imag = pygame.transform.scale(imag, [set.sizenew * 1.5, set.sizenew * 1.5])
         self.rect = pygame.Rect(self.pos, [set.sizenew * 1.5, set.sizenew * 1.5])
+
 
     def draw(self, dp, cam1):
         newr = cam1.newrect(self.rect)
         dp.blit(self.imag, newr)
         if self.t == 0:
             self.speach.draw(dp)
-        print(self.t)
+
 
     def update(self):
         if self.t == 1:

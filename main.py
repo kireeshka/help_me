@@ -20,6 +20,7 @@ class Main():
         self.maps = map.Map('carta..csv')
         self.cam1 = cam.Cam()
         self.npc = npc.NPC((1900,1800),self.maps.spritesformap[122])
+        self.tick = 0
 
     def __Events(self):
         for event in p.event.get():
@@ -30,12 +31,14 @@ class Main():
         self.maps.draw(self.dp,self.cam1)
         self.npc.draw(self.dp,self.cam1)
         self.pl.draw(self.dp, self.cam1)
+        p.display.set_caption(str(int(self.clock.get_fps())))
 
     def __update(self):
-        self.pl.update(self.maps.listwithspr,self.npc)
+        self.pl.update(self.maps.listwithspr,self.npc,self.tick)
         self.cam1.shpion(self.pl,self.maps)
         self.npc.update()
-        self.clock.tick(fps)
+        self.tick = self.clock.tick(fps)
+        print(self.tick)
         p.display.flip()
     def run(self):
         while self.runing:

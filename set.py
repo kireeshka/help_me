@@ -1,6 +1,7 @@
 hi = 1000 # высота экрана
 wi = 1400 # длина экрана
-fps = 60 # частота кадров
+fps = 60# частота кадров
+
 game_name = 'stardewrpg'
 sizesprorig = 16
 sizenew = 50
